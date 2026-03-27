@@ -1,9 +1,9 @@
 % Nimish Dhawan
 % March 2, 2026
 % EXTENDED KALMAN FILTER
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Input(s)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % y   [6x1]: GPS measurements
 % x0  [6x1]: Initial conditions
 % P0  [6x6]: Initial covariance matrix
@@ -12,16 +12,18 @@
 % Qk  [6x6]: Process noise
 % t   [1x1]: Time elapsed since epoch
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Output(s)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% est struct      : Structure storing EKF outputs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% est      struct : Structure storing EKF outputs
 % est.x_est [6x1] : Filter state estimates
 
 function [est] = ekf(y,x0,P0,muE,wE,Qk,t)
 
 % Initializing state and covariance
-persistent x P
+persistent x 
+persistent P
+
 if isempty(x)
     x = x0;
     P = 1e-06*P0;
